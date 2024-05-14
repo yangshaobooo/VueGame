@@ -1,7 +1,7 @@
-<script setup>
 
-</script>
-
+<!-- 这里单纯是一个路由入口了 -->
 <template>
-  <el-button type="primary">Primary</el-button>
+  <RouterView />
 </template>
+
+
