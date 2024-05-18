@@ -55,7 +55,7 @@ const categoryStore = useCategoryStore()
   }
 
   .logo {
-    width: 200px;
+    width: 150px;
     height: 80px;
     background: url("@/assets/images/logo.png") no-repeat center center;
     background-size: contain; // 确保背景图片按比例缩放

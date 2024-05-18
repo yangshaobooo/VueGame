@@ -36,7 +36,7 @@ const categoryStore = useCategoryStore()
   }
 
   .logo {
-    width: 200px;
+    width: 150px;
 
     a {
       display: block;
