@@ -12,7 +12,7 @@ export const useCategoryStore = defineStore('category', () => {
         // await 等待一个异步操作的完成
         const res = await getCategoryAPI()
         // 将请求得到的首页目录数据给赋值给响应式数据
-        categoryList.value = res.result
+        categoryList.value = res.category
     }
     return {
         categoryList,

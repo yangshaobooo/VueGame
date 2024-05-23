@@ -4,10 +4,6 @@ defineProps({
     // 主标题
     title: {
         type: String
-    },
-    // 副标题
-    subTitle: {
-        type: String
     }
 })
 </script>
@@ -19,7 +15,7 @@ defineProps({
             <div class="head">
                 <!-- 主标题和副标题 -->
                 <h3>
-                    {{ title }}<small>{{ subTitle }}</small>
+                    {{ title }}
                 </h3>
             </div>
             <!-- 主体内容区域 -->
@@ -33,23 +29,18 @@ defineProps({
     background-color: #fff;
 
     .head {
-        padding: 40px 0;
+        padding-top: 15px;
+        padding-bottom: 10px;
         display: flex;
         align-items: flex-end;
 
         h3 {
             flex: 1;
-            font-size: 32px;
+            font-size: 22px;
             font-weight: normal;
-            margin-left: 6px;
-            height: 35px;
-            line-height: 35px;
-
-            small {
-                font-size: 16px;
-                color: #999;
-                margin-left: 20px;
-            }
+            margin-left: 26px;
+            height: 22px;
+            line-height: 22px;
         }
     }
 }

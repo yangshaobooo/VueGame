@@ -17,15 +17,10 @@ const categoryStore = useCategoryStore()
         <li class="home">
           <RouterLink to="/">首页</RouterLink>
         </li>
-        <li class="home" v-for="item in categoryStore.categoryList" :key="item.id">
-          <RouterLink  active-class="active" :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
+        <li class="home" v-for="item in categoryStore.categoryList" :key="item.CategoryID">
+          <RouterLink  active-class="active" :to="`/category/${item.CategoryID}`">{{ item.CategoryName }}</RouterLink>
         </li>
       </ul>
-
-      <div class="right">
-        <RouterLink to="/">品牌</RouterLink>
-        <RouterLink to="/">专题</RouterLink>
-      </div>
     </div>
   </div>
 </template>
@@ -56,45 +51,28 @@ const categoryStore = useCategoryStore()
   .container {
     display: flex;
     align-items: center;
+    justify-content: space-between; // 确保内容水平分布
   }
 
   .logo {
-    width: 200px;
+    width: 150px;
     height: 80px;
-    background: url("@/assets/images/logo.png") no-repeat right 2px;
-    background-size: 160px auto;
+    background: url("@/assets/images/logo.png") no-repeat center center;
+    background-size: contain; // 确保背景图片按比例缩放
   }
 
-  .right {
-    width: 220px;
-    display: flex;
-    text-align: center;
-    padding-left: 40px;
-    border-left: 2px solid $xtxColor;
-
-    a {
-      width: 38px;
-      margin-right: 40px;
-      font-size: 16px;
-      line-height: 1;
-
-      &:hover {
-        color: $xtxColor;
-      }
-    }
-  }
 }
 
 .app-header-nav {
-  width: 820px;
+  width: 1200px;
   display: flex;
-  padding-left: 40px;
+  padding-left: 20px;
   position: relative;
   z-index: 998;
 
   li {
-    margin-right: 40px;
-    width: 38px;
+    margin-right: 20px;
+    width: 88px;
     text-align: center;
 
     a {
