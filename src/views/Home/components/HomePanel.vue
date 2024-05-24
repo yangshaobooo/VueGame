@@ -1,3 +1,5 @@
+<!-- 游戏标题+列表区域 -->
+
 <script setup>
 // 定义props
 defineProps({

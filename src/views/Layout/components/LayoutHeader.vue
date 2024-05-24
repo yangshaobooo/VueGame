@@ -1,5 +1,6 @@
-<script setup>
+<!-- 页面头部界面 -->
 
+<script setup>
 import { useCategoryStore } from '@/stores/category'
 // 使用pinia中的数据
 const categoryStore = useCategoryStore()

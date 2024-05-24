@@ -1,5 +1,6 @@
-<script setup>
+<!-- 下滑出现的header界面 -->
 
+<script setup>
 import { useScroll } from '@vueuse/core'
 import { useCategoryStore } from '@/stores/category'
 const { y } = useScroll(window)
