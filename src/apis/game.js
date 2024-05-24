@@ -10,3 +10,15 @@ export const getGamesAPI = (page) => {
         }
     });
 };
+
+// 获取分类游戏
+export const getCategoryGamesAPI=(categoryID,page)=>{
+    return httpInstance({
+        // 注意这里使用的是反引号
+        url:`/list/${categoryID}`,
+        params:{
+            page:page,
+            limit:15
+        }
+    });
+};

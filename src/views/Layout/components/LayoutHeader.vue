@@ -10,7 +10,7 @@ const categoryStore = useCategoryStore()
     <div class="container">
       <!-- 头部中的logo, -->
       <h1 class="logo">
-        <RouterLink to="/">小兔鲜</RouterLink>
+        <RouterLink to="/">myGame</RouterLink>
       </h1>
       <!-- 使用v-for循环展示categoryList中的数据 -->
       <ul class="app-header-nav">

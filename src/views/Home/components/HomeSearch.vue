@@ -1,3 +1,4 @@
+<!-- 通栏页面，承诺文字，包括搜索框 -->
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { Search } from '@element-plus/icons-vue'

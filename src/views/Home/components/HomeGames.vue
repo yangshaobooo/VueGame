@@ -1,20 +1,36 @@
+<!-- eslint-disable no-const-assign -->
+<!-- 游戏列表页面 -->
 <script setup>
 import HomePanel from './HomePanel.vue'
 import GameItem from './GameItem.vue'
-import { getGamesAPI } from '@/apis/game'
-import { onMounted, ref } from 'vue'
+import { getGamesAPI, getCategoryGamesAPI } from '@/apis/game'
+import { onMounted, ref,watch } from 'vue'
+import { useRoute } from 'vue-router'
 
+
+const route = useRoute()
 const gameList = ref([])
+const gameName = ref('')
+
 const getGameList = async () => {
-    const res = await getGamesAPI(1)
+    let res
+    if (route.params.id == undefined) {
+        res = await getGamesAPI(1)
+    } else {
+        res = await getCategoryGamesAPI(route.params.id, 1)
+    }
     gameList.value = res.games
+    gameName.value = res.game_category;
+
 }
 onMounted(() => getGameList())
-
+watch(() => route.params.id, async () => {
+    await getGameList()
+})
 </script>
 
 <template>
-    <HomePanel title="首页：全部游戏">
+    <HomePanel :title=gameName>
         <div class="box">
             <ul class="game-list">
                 <li v-for="games in gameList" :key="games.GameID">
@@ -30,7 +46,8 @@ onMounted(() => getGameList())
     padding-left: 20px;
     background: #fff;
     display: flex;
-    justify-content: center; /* 水平居中 */
+    justify-content: center;
+    /* 水平居中 */
 }
 
 a {

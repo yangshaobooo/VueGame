@@ -1,3 +1,4 @@
+<!-- 单个游戏项目的格式 -->
 <script setup>
 defineProps({
   games: {

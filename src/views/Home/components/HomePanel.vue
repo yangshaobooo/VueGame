@@ -2,9 +2,7 @@
 // 定义props
 defineProps({
     // 主标题
-    title: {
-        type: String
-    }
+    title: {}
 })
 </script>
 
