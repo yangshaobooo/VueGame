@@ -28,7 +28,7 @@ const router = createRouter({
   // 路由滚动行为配置项
   scrollBehavior(){
     return {
-      top:0
+      top:100
     }
   }
 })

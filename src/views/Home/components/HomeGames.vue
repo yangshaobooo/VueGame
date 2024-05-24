@@ -29,6 +29,7 @@ const getGameList = async (page = 1) => {
 const handlePageChange = (page) => {
     currentPage.value = page
     getGameList(page)
+    window.scrollTo({ top: 310, behavior: 'auto' })
 }
 onMounted(() => getGameList())
 watch(() => route.params.id, async () => {
