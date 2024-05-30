@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue'
 import { getGameDetailAPI } from '@/apis/game'
 import { useRoute } from 'vue-router'
 import ImageView from '@/components/ImageView/index.vue'
+import TitleGif from './components/TitleGif.vue'
 
 const route = useRoute()
 const detail = ref({})
@@ -17,6 +18,7 @@ onMounted(() => getDetail())
 <template>
     <h1 v-if="detail.game">{{ detail.game.GameName }}</h1>
     <div class="box" v-if="detail.game">
+        <!-- 视频部分 -->
         <div class="video-part">
             <video :src="detail?.detailParse?.video" controls></video>
             <div class="game-part">
@@ -31,7 +33,16 @@ onMounted(() => getDetail())
                 </div>
             </div>
         </div>
+        <!-- 图片部分 -->
         <ImageView :image-list="detail?.detailParse?.pictures" />
+
+        <!-- 标题和动图部分 -->
+        <div class="gif-part" v-if="detail.detailParse">
+            <div class="left">
+                <TitleGif :detailParse="detail.detailParse" />
+            </div>
+            <div class="right">这是下载提示部分</div>
+        </div>
     </div>
 
 </template>
@@ -49,9 +60,28 @@ h1 {
 // 整体布局
 .box {
     background-color: rgba(27, 40, 56, 1.0);
+    background-image: url("@/assets/images/longback.png"); /* 背景图片路径 */
+    background-blend-mode: overlay; /* 图片与颜色的混合模式 */
+    background-size: 100% auto; /* 背景图片在水平方向铺满，垂直方向自动 */
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+.gif-part {
+    padding-top: 30px;
+    width: 900px;
+    display: flex;
+    justify-content: space-between;
+    .left {
+        flex: 3;
+        padding-right: 20px;
+    }
+    .right {
+        flex:1;
+        background-color: #fff;
+        width: 600px;
+    }
 }
 
 // 第一行视频相关布局
@@ -70,6 +100,7 @@ h1 {
     // 右侧游戏描述
     .game-part {
         padding-left: 20px;
+
         .introduce {
             margin-top: 10px;
             color: #fff;
@@ -82,6 +113,4 @@ h1 {
         }
     }
 }
-
-
 </style>

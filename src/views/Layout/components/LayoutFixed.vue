@@ -30,7 +30,7 @@ const categoryStore = useCategoryStore()
 <style scoped lang='scss'>
 .app-header-sticky {
   width: 100%;
-  height: 80px;
+  height: 70px;
   position: fixed;
   left: 0;
   top: 0;
