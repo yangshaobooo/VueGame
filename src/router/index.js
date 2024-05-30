@@ -31,11 +31,11 @@ const router = createRouter({
     },
   ],
   // 路由滚动行为配置项
-  scrollBehavior(){
-    return {
-      top:100
-    }
-  }
+  // scrollBehavior(){
+  //   return {
+  //     top:100
+  //   }
+  // }
 })
 
 export default router
