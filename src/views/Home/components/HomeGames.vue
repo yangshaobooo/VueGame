@@ -23,7 +23,7 @@ const getGameList = async (page = 1) => {
         res = await getCategoryGamesAPI(route.params.id, page)
     }
     gameList.value = res.games
-    gameName.value = res.game_category;
+    gameName.value = res.game_category
     total.value = res.total
 }
 const handlePageChange = (page) => {
@@ -43,7 +43,7 @@ watch(() => route.params.id, async () => {
         <div class="box">
             <ul class="game-list">
                 <li v-for="games in gameList" :key="games.GameID">
-                    <GameItem :games="games" />
+                        <GameItem :games="games" />
                 </li>
             </ul>
         </div>

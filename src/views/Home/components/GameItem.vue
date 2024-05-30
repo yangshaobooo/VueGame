@@ -9,7 +9,7 @@ defineProps({
 </script>
 
 <template>
-  <RouterLink to="/" class="games-item">
+  <RouterLink :to="`/detail/${games.GameID}`" class="games-item">
     <img :src="games.ImageUrl" alt="" />
     <p class="name ellipsis">{{ games.GameName }}</p>
     <div class="detail">

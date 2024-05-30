@@ -3,6 +3,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '@/views/Layout/index.vue'
 import Home from '@/views/Home/index.vue'
+import Detail from '@/views/Detail/index.vue'
 
 
 const router = createRouter({
@@ -21,6 +22,10 @@ const router = createRouter({
           path:'category/:id',
           component:Home
         },
+        {
+          path:'detail/:id',
+          component:Detail
+        }
 
       ]
     },
