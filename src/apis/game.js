@@ -29,3 +29,10 @@ export const getGameDetailAPI = (gameID) => {
         url: `/detail/${gameID}`
     });
 };
+
+// 获取游戏下载链接
+export const getDownloadsAPI = (gameID) => {
+    return httpInstance({
+        url: `/download/${gameID}`
+    });
+};
