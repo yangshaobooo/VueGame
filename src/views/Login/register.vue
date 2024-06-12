@@ -1,28 +1,32 @@
 <script setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import 'element-plus/theme-chalk/el-message.css'
-import {useRouter} from 'vue-router'
-import {useUserStore} from '@/stores/user'
+import { useRouter } from 'vue-router'
+import {registerAPI} from '@/apis/user'
 
-const userStore = useUserStore()
+
 // 1. 准备表单对象
-const form=ref({
-    username:'',
-    password:'',
-    agree:true
+const form = ref({
+  username: '',
+  password: '',
+  email: '',
+  agree: true
 })
 // 2. 准备规则对象
 const rules = {
-    username:[
-        {required:true,message:'用户名不能为空',trigger:'blur'},
-        {min:2,max:14, message:'用户名长度为2-14个字符', trigger:'blur'}
-    ],
-    password:[
-        {required:true, message:'密码不能为空', trigger:'blur'},
-        {min:6,max:14, message:'密码长度为6-14个字符', trigger:'blur'}
-    ],
-    agree: [
+  username: [
+    { required: true, message: '用户名不能为空', trigger: 'blur' },
+    { min: 2, max: 10, message: '用户名长度为2-10个字符', trigger: 'blur' }
+  ],
+  password: [
+    { required: true, message: '密码不能为空', trigger: 'blur' },
+    { min: 6, max: 14, message: '密码长度为6-14个字符', trigger: 'blur' }
+  ],
+  email: [
+    { required: true, message: '请填写邮箱地址', trigger: 'blur' },
+  ],
+  agree: [
     {
       validator: (rule, val, callback) => {
         return val ? callback() : new Error('请先同意协议')
@@ -31,20 +35,20 @@ const rules = {
   ]
 }
 // 3.获取form实例做统一校验
-const formRef =ref(null)
-const router=useRouter()
-const doLogin = ()=>{
-    const {username,password}=form.value
-    // 调用实例方法
-    formRef.value.validate(async(valid)=>{
-        if (valid){
-            await userStore.getUserInfo({username,password})
-            // 1.提示用户
-            ElMessage({type:'success',message:'登录成功'})
-            // 2.跳转首页
-            router.replace({path:'/'})
-        }
-    })
+const formRef = ref(null)
+const router = useRouter()
+const doRegister = () => {
+  const {username,password,email}=form.value
+  // 调用实例方法
+  formRef.value.validate(async (valid) => {
+    if (valid) {
+      await registerAPI({username,password,email})
+      // 1.提示用户
+      ElMessage({ type: 'success', message: '注册成功，请登录' })
+      // 2.跳转登录页面
+      router.replace({ path: '/login' })
+    }
+  })
 }
 </script>
 
@@ -66,25 +70,26 @@ const doLogin = ()=>{
     <section class="login-section">
       <div class="wrapper">
         <nav>
-          <a href="javascript:;">账户登录</a>
-          <RouterLink class="register" to="/register">注册新账号</RouterLink>
+          <a href="javascript:;">注册新账号</a>
         </nav>
         <div class="account-box">
           <div class="form">
-            <el-form ref="formRef" :model="form" :rules="rules" label-position="right" label-width="60px"
-              status-icon>
+            <el-form ref="formRef" :model="form" :rules="rules" label-position="right" label-width="60px" status-icon>
               <el-form-item prop="username" label="账户">
-                <el-input v-model="form.username" placeholder="请输入长度2-10的账户名"/>
+                <el-input v-model="form.username" placeholder="请输入长度2-10的账户名" />
               </el-form-item>
               <el-form-item prop="password" label="密码">
-                <el-input v-model="form.password" type="password" placeholder="请输入长度6-14的密码"/>
+                <el-input v-model="form.password" type="password" placeholder="请输入长度6-14的密码" />
+              </el-form-item>
+              <el-form-item prop="email" label="邮箱">
+                <el-input v-model="form.email" placeholder="请输入您的邮箱地址" />
               </el-form-item>
               <el-form-item prop="agree" label-width="22px">
-                <el-checkbox  size="large" v-model="form.agree">
+                <el-checkbox size="large" v-model="form.agree">
                   我已同意隐私条款和服务条款
                 </el-checkbox>
               </el-form-item>
-              <el-button size="large" class="subBtn" @click="doLogin">点击登录</el-button>
+              <el-button size="large" class="subBtn" @click="doRegister">注册账号</el-button>
             </el-form>
           </div>
         </div>
@@ -106,6 +111,7 @@ const doLogin = ()=>{
 
   .logo {
     width: 200px;
+
     a {
       display: block;
       height: 70px;
@@ -114,10 +120,12 @@ const doLogin = ()=>{
       background: url("@/assets/images/logo.png") no-repeat center 18px / contain;
     }
   }
+
   .entry {
     width: 120px;
     margin-bottom: 20px;
     font-size: 16px;
+
     i {
       font-size: 14px;
       color: $xtxColor;
@@ -145,18 +153,17 @@ const doLogin = ()=>{
       margin-bottom: 20px;
       border-bottom: 1px solid #f5f5f5;
       display: flex;
-      padding-left: 150px;
-      align-items: center;  // 水平居中
+      padding: 0 40px;
+      text-align: right;
+      align-items: center;
 
       a {
-        font-size: 18px;
+        flex: 1;
+        line-height: 1;
         display: inline-block;
+        font-size: 18px;
+        position: relative;
         text-align: center;
-      }
-      .register{
-        font-size: 11px;
-        color: #069;
-        margin-left: 20px;
       }
     }
   }

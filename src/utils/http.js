@@ -25,6 +25,7 @@ httpInstance.interceptors.request.use(config => {
 
 // axios响应式拦截器
 httpInstance.interceptors.response.use(res => res.data, e => {
+    console.log(e)
     // 统一错误提示
     ElMessage({
         type: 'warning',

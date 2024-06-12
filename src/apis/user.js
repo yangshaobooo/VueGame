@@ -12,3 +12,15 @@ export const loginAPI=({username,password})=>{
         }
     })
 }
+
+export const registerAPI=({username,password,email})=>{
+    return httpInstance({
+        url:'register',
+        method:'POST',
+        data:{
+            username,
+            password,
+            email
+        }
+    })
+}
