@@ -52,7 +52,7 @@ const categoryStore = useCategoryStore()
   .app-header-nav {
     width: 1200px;
     display: flex;
-    padding-left: 20px;
+    padding-left: 10px;
     position: relative;
     z-index: 998;
   

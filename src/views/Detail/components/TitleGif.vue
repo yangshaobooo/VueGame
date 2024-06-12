@@ -16,10 +16,10 @@ defineProps({
             <div>
                 <p class="title">{{ titleGif.title }}</p>
             </div>
-            <img :src="titleGif.gif" alt="">
             <div>
                 <p class="text">{{ titleGif.text }}</p>
             </div>
+            <img :src="titleGif.gif" alt="">
         </li>
     </ul>
 
@@ -41,7 +41,8 @@ defineProps({
         font-size: 20px;
     }
     img{
-        width: 100%;
+        width: 100%;  
+        margin-bottom: 28px
     }
     .text{
         color: #fff;

@@ -31,7 +31,7 @@ onMounted(() => {
     <div class="box" v-if="detail.game">
         <!-- 视频部分 -->
         <div class="video-part" v-if="detail.detailParse">
-            <!-- <video :src="detail.detailParse.video" controls></video> -->
+            <video :src="detail.detailParse.video" controls></video>
             <div class="game-part">
                 <img :src="detail.game.ImageUrl" alt="" />
                 <p class="introduce">{{ detail.game.Introduce }}</p>
