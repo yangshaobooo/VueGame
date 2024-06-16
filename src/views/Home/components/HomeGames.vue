@@ -6,12 +6,13 @@ import GameItem from './GameItem.vue'
 import { getGamesAPI, getCategoryGamesAPI } from '@/apis/game'
 import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import router from '@/router'
 
 
 const route = useRoute()
 const gameList = ref([])
 const gameName = ref('')
-const currentPage = ref(1) // 当前页码
+const currentPage = ref(Number(route.query.page) || 1)// 当前页码
 const total =ref(0)
 const pageSize = ref(15)
 
@@ -28,10 +29,11 @@ const getGameList = async (page = 1) => {
 }
 const handlePageChange = (page) => {
     currentPage.value = page
+    router.push({query:{...route.query,page}})
     getGameList(page)
-    window.scrollTo({ top: 310, behavior: 'auto' })
+    window.scrollTo({ top: 280, behavior: 'auto' })
 }
-onMounted(() => getGameList())
+onMounted(() => getGameList(currentPage.value))
 watch(() => route.params.id, async () => {
     currentPage.value=1
     await getGameList()
