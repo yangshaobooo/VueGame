@@ -1,12 +1,12 @@
 <!-- 最上方导航界面 -->
 
 <script setup>
-import { useUserStore }from '@/stores/user'
-import {useRouter} from 'vue-router'
-const userStore=useUserStore()
+import { useUserStore } from '@/stores/user'
+import { useRouter } from 'vue-router'
+const userStore = useUserStore()
 const router = useRouter()
 
-const confirm = ()=>{
+const confirm = () => {
   // 退出登录业务逻辑实现
   // 1. 清除用户信息 触发action函数
   userStore.clearUserInfo()
@@ -28,13 +28,13 @@ const confirm = ()=>{
               </template>
             </el-popconfirm>
           </li>
-          <li><a href="javascript:;">我的订单</a></li>
-          <li><a href="javascript:;">会员中心</a></li>
+          <li v-if="userStore.userInfo.permit === 1"><a href="javascript:;">VIP中心</a></li>
+          <li v-else><a href="javascript:;">
+              <p class="vip" @click="$router.push('pay')">成为VIP</p>
+            </a></li>
         </template>
         <template v-else>
           <li><a href="javascript:;" @click="$router.push('/login')">请先登录</a></li>
-          <li><a href="javascript:;">帮助中心</a></li>
-          <li><a href="javascript:;">关于我们</a></li>
         </template>
       </ul>
     </div>
@@ -45,11 +45,13 @@ const confirm = ()=>{
 <style scoped lang="scss">
 .app-topnav {
   background: #333;
+
   ul {
     display: flex;
     height: 53px;
     justify-content: flex-end;
     align-items: center;
+
     li {
       a {
         padding: 0 15px;
@@ -73,6 +75,13 @@ const confirm = ()=>{
         }
       }
     }
+  }
+}
+
+.vip {
+  color: #defa08;
+  &:hover {
+    color: $xtxColor;
   }
 }
 </style>

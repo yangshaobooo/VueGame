@@ -6,7 +6,7 @@ import Home from '@/views/Home/index.vue'
 import Detail from '@/views/Detail/index.vue'
 import Login from '@/views/Login/index.vue'
 import Register from '@/views/Login/register.vue'
-
+import Pay from '@/views/Pay/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,6 +35,10 @@ const router = createRouter({
             })
             next()
           }
+        },
+        {
+          path:'pay',
+          component:Pay
         }
 
       ]
